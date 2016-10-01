@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -191,6 +192,14 @@ public class RationalTest {
 	Rational b = new Rational(1,-3);
 	assertTrue(a.equals(b));
     }
+
+    @Test
+    public void test_equals_5() {
+	Rational a = new Rational(2,3);
+	Rational b = new Rational(4,5);
+	assertFalse(a.equals(b));
+    }
+
     
     @Test
     public void test_hashCode_1() {

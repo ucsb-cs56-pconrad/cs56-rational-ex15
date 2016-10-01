@@ -55,6 +55,39 @@ public class Rational {
 			    a.denom * b.denom);
     }
 
+    /**
+       hashCode for Rational class.  Concatenate least significant 
+       16 bits of the 32 bit int values for num and denom.
+
+       Can you think of cases where this might be a poor choice?
+       Can you think of a better choice?
+     */
+
+    @Override
+    public int hashCode() {	
+	int numLowerBitsOnly   = this.num   & 0x0000FFFF;
+	int denomLowerBitsOnly = this.denom & 0x0000FFFF;
+	return (numLowerBitsOnly << 16) | denomLowerBitsOnly;
+    }
+    
+    /** 
+	return true if and only if numerators and denominators are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+
+	// Start: boilerplate code for .equals
+	
+	if (this == o) return true;
+	if (o == null) return false;
+	if (getClass() != o.getClass()) return false;
+	Rational r = (Rational) o;
+
+	// End boilerplate
+	
+	return this.num == r.num && this.denom == r.denom;
+    }
+    
     
     /** 
 	For testing getters.  
@@ -65,6 +98,23 @@ public class Rational {
 	Rational r = new Rational(5,7);
 	System.out.println("r.getNumerator()=" + r.getNumerator());
 	System.out.println("r.getDenominator()=" + r.getDenominator());
+	System.out.println("Integer.toHexString(r.hashCode())=" +
+			   Integer.toHexString(r.hashCode()));
+	Rational r2 = new Rational(0x01234567,0x89ABCDEF);
+	System.out.println("Integer.toHexString(r2.getNumerator())=" +
+			   Integer.toHexString(r2.getNumerator()));
+	System.out.println("Integer.toHexString(r2.getDenominator())=" +
+			   Integer.toHexString(r2.getDenominator()));
+	System.out.println("Integer.toHexString(r2.hashCode())=" +
+			   Integer.toHexString(r2.hashCode()));
+
+	Rational r3 = new Rational(0x89ABCDEF,0x01234567);
+	System.out.println("Integer.toHexString(r3.getNumerator())=" +
+			   Integer.toHexString(r3.getNumerator()));
+	System.out.println("Integer.toHexString(r3.getDenominator())=" +
+			   Integer.toHexString(r3.getDenominator()));
+	System.out.println("Integer.toHexString(r3.hashCode())=" +
+			   Integer.toHexString(r3.hashCode()));
     }
 
     
