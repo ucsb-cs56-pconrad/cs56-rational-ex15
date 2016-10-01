@@ -191,5 +191,35 @@ public class RationalTest {
 	Rational b = new Rational(1,-3);
 	assertTrue(a.equals(b));
     }
+    
+    @Test
+    public void test_hashCode_1() {
+	Rational a = new Rational(2,3);
+	Rational b = new Rational(2,3);
+	assertTrue(a.hashCode()==b.hashCode());
+    }
+ 
+    @Test
+    public void test_hashCode_2() {
+	Rational a = new Rational(2,3);
+	Rational b = new Rational(-2,-3);
+	assertTrue(a.hashCode()==b.hashCode());
+    }
+
+
+    @Test
+    public void test_hashCode_3() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(3,9);
+	assertTrue(a.hashCode()==b.hashCode());
+    }
+
+
+    @Test
+    public void test_hashCode_4() {
+	Rational a = new Rational(-1,3);
+	Rational b = new Rational(1,-3);
+	assertTrue(a.hashCode()==b.hashCode());
+    }
 
 }
