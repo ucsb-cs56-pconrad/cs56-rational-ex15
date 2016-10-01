@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -160,5 +161,35 @@ public class RationalTest {
 	assertEquals("1",r.toString());
     }
  
-    
+
+    @Test
+    public void test_equals_1() {
+	Rational a = new Rational(2,3);
+	Rational b = new Rational(2,3);
+	assertTrue(a.equals(b));
+    }
+ 
+    @Test
+    public void test_equals_2() {
+	Rational a = new Rational(2,3);
+	Rational b = new Rational(-2,-3);
+	assertTrue(a.equals(b));
+    }
+
+
+    @Test
+    public void test_equals_3() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(3,9);
+	assertTrue(a.equals(b));
+    }
+
+
+    @Test
+    public void test_equals_4() {
+	Rational a = new Rational(-1,3);
+	Rational b = new Rational(1,-3);
+	assertTrue(a.equals(b));
+    }
+
 }
