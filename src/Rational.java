@@ -1,5 +1,7 @@
 public class Rational {
 
+    public static final boolean DEBUG=true;
+    
     private int num;
     private int denom;
 
@@ -87,7 +89,29 @@ public class Rational {
 	
 	return this.num == r.num && this.denom == r.denom;
     }
+
+    public static int lcm(int a, int b) {
+	return Math.abs(a*b)/gcd(a,b);
+    }
     
+    public boolean lessThan(Rational other) {
+	int commonDenominator = Math.abs(lcm(this.denom,other.denom));
+
+	
+	int thisNewNum = this.num * (commonDenominator / this.denom);
+	int otherNewNum = other.num * (commonDenominator / other.denom);
+
+	if (Rational.DEBUG) {
+	    System.err.println("commonDenominator="+commonDenominator);
+	    System.err.println("this=" + this);
+	    System.err.println("other=" + other);
+	    System.err.println("thisNewNum=" + thisNewNum);
+	    System.err.println("otherNewNum=" + otherNewNum);
+	}
+	
+	return (thisNewNum - otherNewNum) < 0;
+	
+    }
     
     /** 
 	For testing getters.  

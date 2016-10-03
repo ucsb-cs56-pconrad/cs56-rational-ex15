@@ -231,4 +231,67 @@ public class RationalTest {
 	assertTrue(a.hashCode()==b.hashCode());
     }
 
+    @Test
+    public void test_lessThan_1() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(1,3);
+	assertFalse(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lessThan_2() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(2,3);
+	assertTrue(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lessThan_3() {
+	Rational a = new Rational(1,4);
+	Rational b = new Rational(1,3);
+	assertTrue(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lessThan_4() {
+	Rational a = new Rational(-1,1);
+	Rational b = new Rational(0,1);
+	assertTrue(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lessThan_5() {
+	Rational a = new Rational(-2,1);
+	Rational b = new Rational(-1,1);
+	assertTrue(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lessThan_6() {
+	Rational a = new Rational(-1,3);
+	Rational b = new Rational(-1,4);
+	assertTrue(a.lessThan(b));
+	assertFalse(b.lessThan(a));
+    }
+
+    @Test
+    public void test_lcm_21_6() {
+	assertEquals(42,Rational.lcm(21,6));
+    }
+    
+    @Test
+    public void test_lcm_4_6() {
+	assertEquals(12,Rational.lcm(4,6));
+    }
+    
+    @Test
+    public void test_lcm_5_7() {
+	assertEquals(35,Rational.lcm(5,7));
+    }
+    
 }
