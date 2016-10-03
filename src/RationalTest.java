@@ -232,51 +232,51 @@ public class RationalTest {
     }
 
     @Test
-    public void test_lessThan_1() {
+    public void test_lt_1() {
 	Rational a = new Rational(1,3);
 	Rational b = new Rational(1,3);
-	assertFalse(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertFalse(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
-    public void test_lessThan_2() {
+    public void test_lt_2() {
 	Rational a = new Rational(1,3);
 	Rational b = new Rational(2,3);
-	assertTrue(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertTrue(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
-    public void test_lessThan_3() {
+    public void test_lt_3() {
 	Rational a = new Rational(1,4);
 	Rational b = new Rational(1,3);
-	assertTrue(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertTrue(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
-    public void test_lessThan_4() {
+    public void test_lt_4() {
 	Rational a = new Rational(-1,1);
 	Rational b = new Rational(0,1);
-	assertTrue(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertTrue(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
-    public void test_lessThan_5() {
+    public void test_lt_5() {
 	Rational a = new Rational(-2,1);
 	Rational b = new Rational(-1,1);
-	assertTrue(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertTrue(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
-    public void test_lessThan_6() {
+    public void test_lt_6() {
 	Rational a = new Rational(-1,3);
 	Rational b = new Rational(-1,4);
-	assertTrue(a.lessThan(b));
-	assertFalse(b.lessThan(a));
+	assertTrue(a.lt(b));
+	assertFalse(b.lt(a));
     }
 
     @Test
@@ -294,4 +294,53 @@ public class RationalTest {
 	assertEquals(35,Rational.lcm(5,7));
     }
     
+    @Test
+    public void test_le_1() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(1,3);
+	assertTrue(a.le(b));
+	assertTrue(b.le(a));
+    }
+
+    @Test
+    public void test_le_2() {
+	Rational a = new Rational(1,3);
+	Rational b = new Rational(2,3);
+	assertTrue(a.le(b));
+	assertFalse(b.le(a));
+    }
+
+    @Test
+    public void test_le_3() {
+	Rational a = new Rational(1,4);
+	Rational b = new Rational(1,3);
+	assertTrue(a.le(b));
+	assertFalse(b.le(a));
+    }
+
+    @Test
+    public void test_le_4() {
+	Rational a = new Rational(-1,1);
+	Rational b = new Rational(0,1);
+	assertTrue(a.le(b));
+	assertFalse(b.le(a));
+    }
+
+    @Test
+    public void test_le_5() {
+	Rational a = new Rational(-2,1);
+	Rational b = new Rational(-1,1);
+	assertTrue(a.le(b));
+	assertFalse(b.le(a));
+    }
+
+    @Test
+    public void test_le_6() {
+	Rational a = new Rational(-1,3);
+	Rational b = new Rational(-1,4);
+	assertTrue(a.le(b));
+	assertFalse(b.le(a));
+    }
+
+
 }

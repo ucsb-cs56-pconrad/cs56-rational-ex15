@@ -1,6 +1,6 @@
 public class Rational {
 
-    public static final boolean DEBUG=true;
+    public static final boolean DEBUG=false;
     
     private int num;
     private int denom;
@@ -93,8 +93,11 @@ public class Rational {
     public static int lcm(int a, int b) {
 	return Math.abs(a*b)/gcd(a,b);
     }
-    
-    public boolean lessThan(Rational other) {
+
+    /**
+       less than
+    */
+    public boolean lt(Rational other) {
 	int commonDenominator = Math.abs(lcm(this.denom,other.denom));
 
 	
@@ -112,6 +115,33 @@ public class Rational {
 	return (thisNewNum - otherNewNum) < 0;
 	
     }
+
+    /**
+       less than or equal
+    */
+    
+    public boolean le(Rational other) {
+	return this.equals(other) || this.lt(other);
+    }
+
+
+    /**
+       greater than
+    */
+    
+    public boolean gt(Rational other) {
+	return ! this.le(other);
+    }
+
+
+    /**
+       greater than or equal
+    */
+    
+    public boolean ge(Rational other) {
+	return ! this.lt(other);
+    }
+
     
     /** 
 	For testing getters.  
