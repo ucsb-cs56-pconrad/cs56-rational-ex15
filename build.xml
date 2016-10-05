@@ -25,9 +25,14 @@
   </target>
 
   
-  <target name="run" description="run the main">
-    <java classname="Rational" classpath="build"/>
+  <target name="run" description="run the main" depends="compile">
+    <java classname="edu.ucsb.cs56.pconrad.rational.Rational" classpath="build"/>
   </target>
+
+  <target name="runPlainArrayDemo" description="run the main from PlainArrayDemo" depends="compile">
+    <java classname="edu.ucsb.cs56.pconrad.rational.PlainArrayDemo" classpath="build"/>
+  </target>
+
 
   <target name="jar" depends="compile" description="create a jar file">
     <jar destfile="build/rational.jar">
