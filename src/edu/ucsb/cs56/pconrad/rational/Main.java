@@ -1,3 +1,5 @@
+package edu.ucsb.cs56.pconrad.rational;
+
 public class Main { // implicit: public class Main extends object
     
     public static void main (String [] args) {

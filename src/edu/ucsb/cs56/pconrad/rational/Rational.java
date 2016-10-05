@@ -1,3 +1,5 @@
+package edu.ucsb.cs56.pconrad.rational;
+
 public class Rational {
 
     public static final boolean DEBUG=false;

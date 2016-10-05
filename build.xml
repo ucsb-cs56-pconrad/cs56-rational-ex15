@@ -18,9 +18,10 @@
 
   <target name="clean" description="clean up the project">
     <delete>
-      <fileset dir="build" includes="*.class"/>
-      <fileset dir="build" includes="*.jar"/>	
+      <fileset dir="build" includes="**/*.class"/>
+      <fileset dir="build" includes="**/*.jar"/>	
     </delete>
+    <delete dir="build" />
   </target>
 
   
@@ -30,9 +31,9 @@
 
   <target name="jar" depends="compile" description="create a jar file">
     <jar destfile="build/rational.jar">
-      <fileset dir="build" includes="*.class"/>
+      <fileset dir="build" includes="**/*.class"/>
       <manifest>
-	<attribute name="Main-Class" value="Rational"/>
+	<attribute name="Main-Class" value="edu.ucsb.cs56.pconrad.rational.Rational"/>
       </manifest>
     </jar>
   </target>
@@ -42,7 +43,7 @@
       <classpath refid="project.class.path" />
       <batchtest fork="yes">
 	<fileset dir="src">
-	  <include name="*Test.java"/>
+	  <include name="**/*Test.java"/>
 	</fileset>
       </batchtest>
       <formatter type="brief" usefile="false" />
@@ -57,7 +58,7 @@
     </delete>
     <javadoc destdir="javadoc">
       <fileset dir="src" >
-	<include name="*.java"/>
+	<include name="**/*.java"/>
       </fileset>
       <classpath refid="project.class.path" />
       <link href="http://docs.oracle.com/javase/8/docs/api/" />          
