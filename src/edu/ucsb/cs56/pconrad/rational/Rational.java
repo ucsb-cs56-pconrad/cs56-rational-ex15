@@ -21,23 +21,60 @@ public class Rational {
 	else
 	    return gcd(b%a, a);
     }
+
+    public Rational(String s) {
+	String [] parts = s.split("/");
+	if (parts.length != 2) {
+	    throw new IllegalArgumentException("must contain /");	   
+	}
+	String numString = parts[0].trim();
+	String denomString = parts[1].trim();
+	try {
+	    num = Integer.parseInt(numString);
+	} catch (NumberFormatException nfe) {
+	    throw new IllegalArgumentException
+		("bad numerator: " + numString);
+	}
+	try {
+	    denom = Integer.parseInt(denomString);
+	    if (denom== 0) {
+		throw new IllegalArgumentException
+		    ("denominator may not be zero");
+	    }
+	} catch (NumberFormatException nfe) {
+	    throw new IllegalArgumentException
+		("bad denominator: " + denomString);
+	}
+	this.rationalize();	
+    } // Rational(String)
+
     
     public Rational() {
 	this.num = 1;
 	this.denom = 1;
     }
 
+    private void rationalize() {
+	if (this.num != 0) {
+	    int gcd = Rational.gcd(this.num,this.denom);
+	    this.num /= gcd;
+	    this.denom /= gcd;
+	}
+	if ( this.denom < 0 ) {
+	    // if both are negative makes both positive
+	    // if only denom negative, moves sign to numerator
+	    this.num = (-this.num);
+	    this.denom = (-this.denom);
+	}
+    }
+    
     public Rational(int num, int denom) {
 	if (denom== 0) {
 	    throw new IllegalArgumentException("denominator may not be zero");
 	}
 	this.num = num;
 	this.denom = denom;
-	if (num != 0) {
-	    int gcd = Rational.gcd(num,denom);
-	    this.num /= gcd;
-	    this.denom /= gcd;
-	}
+	this.rationalize();
     }
 
     public String toString() {
@@ -174,6 +211,6 @@ public class Rational {
     }
 
     
-
+    
     
 }

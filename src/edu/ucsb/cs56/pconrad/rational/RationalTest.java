@@ -344,5 +344,41 @@ public class RationalTest {
 	assertFalse(b.le(a));
     }
 
+    @Test
+    public void test_Rational_String_constructor_1() {
+	Rational expected = new Rational(2,3);
+	Rational actual = new Rational("2/3");
+	assertEquals(expected,actual);
+    }
+    
+    @Test
+    public void test_Rational_String_constructor_2() {
+	Rational expected = new Rational(-22,3);
+	Rational actual = new Rational("-22/3");
+	assertEquals(expected,actual);
+    }
 
+    @Test
+    public void test_Rational_String_constructor_3() {
+	Rational expected = new Rational(-152,263);
+	Rational actual = new Rational(" 456 / -789 ");
+	assertEquals(expected,actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_Rational_String_constructor_bad1() {
+	Rational actual = new Rational("1/3x");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_Rational_String_constructor_bad2() {
+	Rational actual = new Rational("1/3/5");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_Rational_String_constructor_bad3() {
+	Rational actual = new Rational("13");
+    }
+
+    
 }
