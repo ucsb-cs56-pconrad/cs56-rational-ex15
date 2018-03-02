@@ -2,8 +2,7 @@
 
 Demonstration of code test coverage measurement
 
-* Based on cs56-rational-example/ex10
-* See: https://ucsb-cs56-pconrad.github.io/tutorials/rational_ex11
+* See: https://ucsb-cs56-pconrad.github.io/tutorials/rational_ex12
 
 Helpful tutorials:
 
