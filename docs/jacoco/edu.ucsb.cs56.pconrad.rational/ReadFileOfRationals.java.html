@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReadFileOfRationals.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rational</a> &gt; <a href="index.source.html" class="el_package">edu.ucsb.cs56.pconrad.rational</a> &gt; <span class="el_source">ReadFileOfRationals.java</span></div><h1>ReadFileOfRationals.java</h1><pre class="source lang-java linenums">package edu.ucsb.cs56.pconrad.rational;
+    
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.util.ArrayList;
+
+/**
+   Example of reading text data from a file to initialize a sequence
+   of Rational objects.
+
+   Adapted from example 4.1 from
+   https://www.mkyong.com/java8/java-8-stream-read-a-file-line-by-line/
+
+   Also uses &quot;try with resources&quot; to autoclose 
+
+   @author P. Conrad (based on program from https://www.mkyong.com/ )
+   @version rational_ex11
+   @see &lt;a href=&quot;https://ucsb-cs56-pconrad.github.io/tutorials/rational_ex11/&quot;&gt;https://ucsb-cs56-pconrad.github.io/tutorials/rational_ex11/&lt;/a&gt;
+   @see &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html&quot;&gt;Oracle tutorial on &quot;try with resources&quot;&lt;/a&gt;
+
+*/
+
+
+<span class="nc" id="L26">public class ReadFileOfRationals {</span>
+
+    public static final String USAGE =
+	&quot;Usage: \n&quot; +
+	&quot;  java [-cp jar-file] edu.ucsb.cs56.pconrad.rational.ReadFileOfRationals inputFile.txt\n&quot;;
+
+    public static void main(String args[]) {
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">	if (args.length != 1) {</span>
+<span class="nc" id="L35">	    System.err.println(&quot;Error: Missing filename parameter&quot;);</span>
+<span class="nc" id="L36">	    System.err.println(USAGE);</span>
+<span class="nc" id="L37">	    System.exit(1);</span>
+	}
+	
+<span class="nc" id="L40">	String filename = args[0];</span>
+
+<span class="nc" id="L42">	ArrayList&lt;Rational&gt; numbers = readArrayListFromFile(filename);</span>
+
+<span class="nc" id="L44">	System.out.println(&quot;numbers = &quot; + numbers);</span>
+<span class="nc" id="L45">    }</span>
+
+    public static ArrayList&lt;Rational&gt; readArrayListFromFile(String fileName) {
+
+<span class="nc" id="L49">	ArrayList&lt;Rational&gt; items = new ArrayList&lt;Rational&gt;();</span>
+	
+	// Example of a &quot;try with resources&quot; loop
+	// Short version: objects that implement &quot;java.lang.AutoCloseable&quot;
+	// can be &quot;automatically closed&quot; at the end of a try with resources.
+	// See link at top of program for more info
+	
+<span class="nc" id="L56">	try (BufferedReader br =</span>
+	     new BufferedReader(new FileReader(fileName))) {
+
+	    String line;
+<span class="nc bnc" id="L60" title="All 2 branches missed.">	    while ((line = br.readLine()) != null) {</span>
+		// process &quot;line&quot; as input
+		try {
+<span class="nc" id="L63">		    Rational r = new Rational(line);</span>
+<span class="nc" id="L64">		    items.add(r);</span>
+<span class="nc" id="L65">		} catch (IllegalArgumentException iae) {</span>
+<span class="nc" id="L66">		    System.err.println(&quot;Warning: ignored bad input line: &quot; +</span>
+				       line);
+<span class="nc" id="L68">		}</span>
+	    }
+
+<span class="nc bnc" id="L71" title="All 8 branches missed.">	} catch (IOException e) {</span>
+<span class="nc" id="L72">	    e.printStackTrace();</span>
+<span class="nc" id="L73">	}</span>
+	
+<span class="nc" id="L75">	return items;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

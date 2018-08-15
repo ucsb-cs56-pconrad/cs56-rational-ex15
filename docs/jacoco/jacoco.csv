@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+rational,edu.ucsb.cs56.pconrad.rational,ReadFileOfRationals,117,0,12,0,21,0,9,0,3,0
+rational,edu.ucsb.cs56.pconrad.rational,Main,66,0,2,0,17,0,3,0,2,0
+rational,edu.ucsb.cs56.pconrad.rational,Rational,176,278,10,28,30,55,12,25,4,14
+rational,edu.ucsb.cs56.pconrad.rational,PlainArrayDemo,82,0,6,0,13,0,5,0,2,0
+rational,edu.ucsb.cs56.pconrad.rational,ArrayListDemo,77,0,6,0,14,0,5,0,2,0

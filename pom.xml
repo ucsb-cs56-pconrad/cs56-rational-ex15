@@ -34,7 +34,16 @@
     
     
   </dependencies>
-    
+
+  <!-- For use with github pages, to publish the site to the /docs subdirectory -->
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>file://${project.basedir}/docs/</url>
+    </site>
+  </distributionManagement>
+
+  
   <!-- Make jar file executable -->
   <build>
 
