@@ -351,6 +351,13 @@ public class RationalTest {
     }
 
     @Test
+    public void test_Rational_default_constructor() {
+	Rational expected = new Rational();
+	Rational actual = new Rational(1,1);
+	assertEquals(expected,actual);
+    }
+	
+    @Test
     public void test_Rational_String_constructor_1() {
 	Rational expected = new Rational(2,3);
 	Rational actual = new Rational("2/3");
