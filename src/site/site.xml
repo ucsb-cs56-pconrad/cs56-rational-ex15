@@ -1,0 +1,8 @@
+<project>
+  <body>
+    <links>
+        <item name="ucsb-cs56-pconrad" href="http://ucsb-cs56-pconrad"/>
+        <item name="Javadocs" href="/apidocs/index.html"/>
+    </links>
+  </body>
+</project>
