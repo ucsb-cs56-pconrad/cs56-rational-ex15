@@ -392,5 +392,9 @@ public class RationalTest {
 	Rational actual = new Rational("13");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void test_Rational_String_constructor_bad4() {
+	Rational actual = new Rational("x/3");
+    }
     
 }
