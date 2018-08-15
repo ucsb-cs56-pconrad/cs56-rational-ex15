@@ -78,43 +78,49 @@ public class RationalTest {
 
     @Test
     public void test_gcd_5_15() {
-	assertEquals(5, Rational.gcd(5,15));
+		assertEquals(5, Rational.gcd(5,15));
     }
 
     @Test
     public void test_gcd_15_5() {
-	assertEquals(5, Rational.gcd(15,5));
+		assertEquals(5, Rational.gcd(15,5));
     }
 
     @Test
     public void test_gcd_24_6() {
-	assertEquals(6, Rational.gcd(24,6));
+		assertEquals(6, Rational.gcd(24,6));
     }
 
     @Test
     public void test_gcd_17_5() {
-	assertEquals(1, Rational.gcd(17,5));
+		assertEquals(1, Rational.gcd(17,5));
     }
     
     @Test
     public void test_gcd_1_1() {
-	assertEquals(1, Rational.gcd(1,1));
+		assertEquals(1, Rational.gcd(1,1));
     }
 
     @Test
     public void test_gcd_20_25() {
-	assertEquals(5, Rational.gcd(20,25));
+		assertEquals(5, Rational.gcd(20,25));
     }
 
     @Test
+    public void test_gcd_1_0() {
+		assertEquals(1, Rational.gcd(1,0));
+    }
+
+	
+    @Test
     public void test_rational_m10_m5() {
-	Rational r = new Rational(-10,-5);
+		Rational r = new Rational(-10,-5);
 	assertEquals("2",r.toString());
     }
 
     @Test
     public void test_rational_m5_6() {
-	Rational r = new Rational(-5,6);
+		Rational r = new Rational(-5,6);
 	assertEquals("-5/6",r.toString());
     }
 
