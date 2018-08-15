@@ -1,6 +1,10 @@
 # jacoco-demo
 
-Demonstration of code test coverage measurement
+# THIS IS THE BRANCH for 08.15.2018
+
+TBD
+
+#  Demonstration of code test coverage measurement
 
 * See: https://ucsb-cs56-pconrad.github.io/tutorials/rational_ex12
 
