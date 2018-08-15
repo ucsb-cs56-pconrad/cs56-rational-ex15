@@ -19,4 +19,18 @@ To see results:
 Open: target/site/jacoco/index.html in a web browser.
 
 
+OR, IF any ONLY IF your project is open source:
+
+Use:
+
+```
+mvn test
+mvn jacoco:report
+mvn site:deploy
+git add docs
+git commit -m "commit contents of docs subdirectory"
+git push origin master
+```
+
+Then make sure your repo is configured to publish to github-pages from the docs subdirectory.
 
