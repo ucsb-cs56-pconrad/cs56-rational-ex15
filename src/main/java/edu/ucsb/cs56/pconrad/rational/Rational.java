@@ -97,18 +97,13 @@ public class Rational {
     }
 
     /**
-       hashCode for Rational class.  Concatenate least significant 
-       16 bits of the 32 bit int values for num and denom.
+       hashCode for Rational class.   Piggyback off of java.lang.String.hashCode()
 
-       Can you think of cases where this might be a poor choice?
-       Can you think of a better choice?
      */
 
-    @Override
-    public int hashCode() {	
-	int numLowerBitsOnly   = this.num   & 0x0000FFFF;
-	int denomLowerBitsOnly = this.denom & 0x0000FFFF;
-	return (numLowerBitsOnly << 16) | denomLowerBitsOnly;
+	@Override
+    public int hashCode() {
+		return this.toString().hashCode();
     }
     
     /** 

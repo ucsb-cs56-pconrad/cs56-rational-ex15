@@ -170,13 +170,7 @@ public class RationalTest {
 	assertEquals("1",r.toString());
     }
  
-    @Test
-    public void test_a_equals_a() {
-		Rational a = new Rational(2,3);
-		assertTrue(a.equals(a));
-    }
 
-	
     @Test
     public void test_equals_1() {
 	Rational a = new Rational(2,3);
@@ -254,13 +248,31 @@ public class RationalTest {
     }
 
     @Test
-    public void test_lt_2() {
-	Rational a = new Rational(1,3);
-	Rational b = new Rational(2,3);
-	assertTrue(a.lt(b));
-	assertFalse(b.lt(a));
+    public void test_gt_1() {
+		Rational a = new Rational(1,3);
+		Rational b = new Rational(1,3);
+		assertFalse(a.gt(b));
+		assertFalse(b.gt(a));
     }
 
+	
+    @Test
+    public void test_lt_2() {
+		Rational a = new Rational(1,3);
+		Rational b = new Rational(2,3);
+		assertTrue(a.lt(b));
+		assertFalse(b.lt(a));
+    }
+
+    @Test
+    public void test_gt_2() {
+		Rational a = new Rational(1,3);
+		Rational b = new Rational(2,3);
+		assertTrue(b.gt(a));
+		assertFalse(a.gt(b));
+    }
+
+	
     @Test
     public void test_lt_3() {
 	Rational a = new Rational(1,4);
@@ -269,6 +281,8 @@ public class RationalTest {
 	assertFalse(b.lt(a));
     }
 
+
+	
     @Test
     public void test_lt_4() {
 	Rational a = new Rational(-1,1);
