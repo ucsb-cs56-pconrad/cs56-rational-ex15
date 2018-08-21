@@ -5,4 +5,9 @@ This repo is a work in progress on demonstrating Lambdas and Functional Interfac
 
 See also: <https://www.baeldung.com/java-8-functional-interfaces>
 
-Javadoc: <https://ucsb-cs56-pconrad.github.io/cs56-rational-ex14/>
+"Site" published by `mvn site`: <https://ucsb-cs56-pconrad.github.io/cs56-rational-ex14/apidocs>
+
+
+Javadoc: <https://ucsb-cs56-pconrad.github.io/cs56-rational-ex14/apidocs>
+
+Test Coverage: <https://ucsb-cs56-pconrad.github.io/cs56-rational-ex14/jacoco>
