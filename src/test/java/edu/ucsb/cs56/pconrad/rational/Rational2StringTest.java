@@ -29,11 +29,36 @@ public class Rational2StringTest {
 
     @Test
     public void test_BasicRational2String_1() {
-		Rational actual = new Rational(13,1);
+		Rational r = new Rational(13,1);
 		BasicRational2String br2s = new BasicRational2String();
-		assertEquals("13",br2s.r2s(actual));
+		assertEquals("13",br2s.r2s(r));
     }
 
 
-    
+	@Test
+    public void test_RealApproximationR2S_1() {
+		Rational r = new Rational(13,1);
+		RealApproximationR2S ra = new RealApproximationR2S();
+		assertEquals("13.000",ra.r2s(r));
+    }
+    @Test
+    public void test_RealApproximationR2S_2() {
+		Rational r = new Rational(1,2);
+		RealApproximationR2S ra = new RealApproximationR2S();
+		assertEquals("0.500",ra.r2s(r));
+    }
+    @Test
+    public void test_RealApproximationR2S_3() {
+		Rational r = new Rational(1,3);
+		RealApproximationR2S ra = new RealApproximationR2S();
+		assertEquals("0.333",ra.r2s(r));
+    }
+
+    @Test
+    public void test_RealApproximationR2S_4() {
+		Rational r = new Rational(2,3);
+		RealApproximationR2S ra = new RealApproximationR2S();
+		assertEquals("0.667",ra.r2s(r));
+    }
+
 }

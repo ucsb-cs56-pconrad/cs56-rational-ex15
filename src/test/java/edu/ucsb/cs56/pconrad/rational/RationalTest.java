@@ -409,5 +409,13 @@ public class RationalTest {
     public void test_Rational_String_constructor_bad4() {
 	Rational actual = new Rational("x/3");
     }
-    
+
+	@Test
+	public void test_Rational_String_constructor_bad4() {
+		String expected =
+			"
+
+		
+    }
+
 }
