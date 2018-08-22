@@ -206,6 +206,47 @@ public class Rational {
     }
 
     
-    
+	public static String tableOfRationalsMarkdown(int rows,int cols)  {
+
+		/* 
+		   String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+
+		*/
+		
+		String result = "| ";
+
+		// generate the first line of header
+
+		for (int i=1; i<=cols; i++) {
+			result += "|" + i;
+		}
+		result += "|" + System.lineSeparator();
+
+		// generate the second line of header
+		// extra column for the column labels
+		
+		for (int i=1; i<=(cols+1); i++) {
+			result += "|-" ;
+		}
+		result += "|" + System.lineSeparator();
+
+		// generate the rest of the table
+		
+		for (int denom=1; denom<=rows; denom++) {
+			result += "|" + denom;
+			for (int num=1; num<=cols; num++) {
+				Rational r = new Rational(num,denom);
+				result += "|" + r.toString();
+				// add this rational into the result
+			}
+			result += "|" + System.lineSeparator();
+		}
+		return result;
+	}
     
 }

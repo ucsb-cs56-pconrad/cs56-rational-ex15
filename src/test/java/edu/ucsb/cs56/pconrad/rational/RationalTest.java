@@ -411,11 +411,15 @@ public class RationalTest {
     }
 
 	@Test
-	public void test_Rational_String_constructor_bad4() {
+	public void test_tableOfRationalsMarkdown_3_4() {
+		String newline = System.lineSeparator();
 		String expected =
-			"
-
-		
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		assertEquals(expected,Rational.tableOfRationalsMarkdown(3,4));		
     }
 
 }
