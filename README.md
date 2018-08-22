@@ -54,3 +54,6 @@ For example, I'd also like to get a table like this one:
 |2|0.500|1.000|1.500|2.000|
 |3|0.333|0.667|1.000|1.333|
 
+```java
+Rational.tableOfRationalsMarkdown(int rows,int cols,Rational2String r2s)
+```
