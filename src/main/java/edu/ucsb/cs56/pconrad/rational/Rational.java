@@ -183,41 +183,63 @@ public class Rational {
      */
 
     public static void main (String [] args) {
-	Rational r = new Rational(5,7);
-	System.out.println("r.getNumerator()=" + r.getNumerator());
-	System.out.println("r.getDenominator()=" + r.getDenominator());
-	System.out.println("Integer.toHexString(r.hashCode())=" +
-			   Integer.toHexString(r.hashCode()));
-	Rational r2 = new Rational(0x01234567,0x89ABCDEF);
-	System.out.println("Integer.toHexString(r2.getNumerator())=" +
-			   Integer.toHexString(r2.getNumerator()));
-	System.out.println("Integer.toHexString(r2.getDenominator())=" +
-			   Integer.toHexString(r2.getDenominator()));
-	System.out.println("Integer.toHexString(r2.hashCode())=" +
-			   Integer.toHexString(r2.hashCode()));
+		String actual = Rational.markdownTable(3,4, (r)->{
+				int denom = r.getDenominator();
+				return ( (denom==1)? "" + r.getNumerator() : "\\frac{" +
+						 r.getNumerator() + "}{" +
+						 r.getDenominator() + "}" );
+			});
 
-	Rational r3 = new Rational(0x89ABCDEF,0x01234567);
-	System.out.println("Integer.toHexString(r3.getNumerator())=" +
-			   Integer.toHexString(r3.getNumerator()));
-	System.out.println("Integer.toHexString(r3.getDenominator())=" +
-			   Integer.toHexString(r3.getDenominator()));
-	System.out.println("Integer.toHexString(r3.hashCode())=" +
-			   Integer.toHexString(r3.hashCode()));
+		System.out.println(actual);
+		
+		Rational r = new Rational(5,7);
+		System.out.println("r.getNumerator()=" + r.getNumerator());
+		System.out.println("r.getDenominator()=" + r.getDenominator());
+		System.out.println("Integer.toHexString(r.hashCode())=" +
+						   Integer.toHexString(r.hashCode()));
+		Rational r2 = new Rational(0x01234567,0x89ABCDEF);
+		System.out.println("Integer.toHexString(r2.getNumerator())=" +
+						   Integer.toHexString(r2.getNumerator()));
+		System.out.println("Integer.toHexString(r2.getDenominator())=" +
+						   Integer.toHexString(r2.getDenominator()));
+		System.out.println("Integer.toHexString(r2.hashCode())=" +
+						   Integer.toHexString(r2.hashCode()));
+		
+		Rational r3 = new Rational(0x89ABCDEF,0x01234567);
+		System.out.println("Integer.toHexString(r3.getNumerator())=" +
+						   Integer.toHexString(r3.getNumerator()));
+		System.out.println("Integer.toHexString(r3.getDenominator())=" +
+						   Integer.toHexString(r3.getDenominator()));
+		System.out.println("Integer.toHexString(r3.hashCode())=" +
+						   Integer.toHexString(r3.hashCode()));
     }
 
-    
-	public static String tableOfRationalsMarkdown(int rows,int cols)  {
+	public class Foo implements Rational2String {
+		public String r2s(Rational r) {
+			return r.toString();
+		}		
+	}
+	
+	public static String markdownTable(int rows,int cols)  {
+		//Foo foo = new Foo();
+		//return markdownTable(rows,cols,foo.r2s(r));
 
-		/* 
-		   String expected =
-			"| |1|2|3|4|" + newline +
-			"|-|-|-|-|-|" + newline +
-			"|1|1|2|3|4|" + newline +
-			"|2|1/2|1|3/2|2|" + newline +
-			"|3|1/3|2/3|1|4/3|" + newline;
+		/*
+		return markdownTable(rows, cols,
+										new Rational2String(){
+											public String r2s(Rational r) {
+												return r.toString();
+											}
 
+										});
 		*/
-		
+		return markdownTable(rows,cols,(r)->r.toString());
+	}
+    
+	public static String markdownTable(int rows,
+												  int cols,
+												  Rational2String r2s_instance) {
+
 		String result = "| ";
 
 		// generate the first line of header
@@ -241,7 +263,7 @@ public class Rational {
 			result += "|" + denom;
 			for (int num=1; num<=cols; num++) {
 				Rational r = new Rational(num,denom);
-				result += "|" + r.toString();
+				result += "|" + r2s_instance.r2s(r);
 				// add this rational into the result
 			}
 			result += "|" + System.lineSeparator();
