@@ -9,6 +9,8 @@ import org.junit.Before;
 
 public class RationalTest {
 
+	private static final String newline = System.lineSeparator();
+	
     private Rational r_5_15;
     private Rational r_24_6;
     private Rational r_3_7;  
@@ -412,7 +414,6 @@ public class RationalTest {
 
 	@Test
 	public void test_markdownTable_3_4() {
-		String newline = System.lineSeparator();
 		String expected =
 			"| |1|2|3|4|" + newline +
 			"|-|-|-|-|-|" + newline +
@@ -423,8 +424,117 @@ public class RationalTest {
     }
 
 	@Test
+	public void test_markdownTable_3_4_using_BasicRational2String() {
+
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface
+		
+		BasicRational2String br2s = new BasicRational2String();
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		String actual = Rational.markdownTable(3,4,br2s);		
+		assertEquals(expected,actual);		
+    }
+
+	public class MyPlugin implements Rational2String {
+		public String r2s(Rational r) { return r.toString(); }
+	}
+
+	@Test
+	public void test_markdownTable_3_4_using_named_inner_class() {
+
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface
+		
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		String actual = Rational.markdownTable(3,4,new MyPlugin());
+		assertEquals(expected,actual);		
+    }
+
+
+	@Test
+	public void test_markdownTable_3_4_using_anonymous_inner_class() {
+
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface
+		
+
+		Rational2String r2s = new Rational2String() {
+				public String r2s(Rational r) { return r.toString(); }
+			};				
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		String actual = Rational.markdownTable(3,4,r2s);
+		assertEquals(expected,actual);		
+    }
+
+	@Test
+	public void test_markdownTable_3_4_using_anonymous_inner_class_and_instance() {
+
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface
+		
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		String actual =
+			Rational.markdownTable(3, 4 ,new Rational2String() {
+					public String r2s(Rational r) { return r.toString(); }
+				});
+		assertEquals(expected,actual);		
+    }
+
+	@Test
+	public void test_markdownTable_3_4_using_lambda() {
+
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface
+		
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|1/2|1|3/2|2|" + newline +
+			"|3|1/3|2/3|1|4/3|" + newline;
+		String actual = Rational.markdownTable(3, 4 , (r)->r.toString() );
+		assertEquals(expected,actual);		
+    }
+
+	@Test
+	public void test_markdownTable_3_4_RealToThreeDigits() {
+		
+		// This illustrates using a separate class, defined in a a separate
+		// file, as the instance of the functional interface			
+		
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1.000|2.000|3.000|4.000|" + newline +
+			"|2|0.500|1.000|1.500|2.000|" + newline +
+			"|3|0.333|0.667|1.000|1.333|" + newline;
+		String actual = Rational.markdownTable(3, 4 , new RealApproximationR2S()  );
+		assertEquals(expected,actual);		
+    }
+
+	
+	@Test
 	public void test_markdownTable_3_4_latexFormatter() {
-		String newline = System.lineSeparator();
 		String expected =
 			"| |1|2|3|4|" + newline +
 			"|-|-|-|-|-|" + newline +
@@ -435,5 +545,18 @@ public class RationalTest {
 		assertEquals(expected,actual);		
     }
 
+	@Test
+	public void test_markdownTable_3_4_HTMLFormatter() {
+		// See: http://changelog.ca/log/2008/07/01/writing_fractions_in_html
+		// Example: <sup>1</sup>&frasl;<sub>10</sub>
+		String expected =
+			"| |1|2|3|4|" + newline +
+			"|-|-|-|-|-|" + newline +
+			"|1|1|2|3|4|" + newline +
+			"|2|<sup>1</sup>&frasl;<sub>2</sub>|1|<sup>3</sup>&frasl;<sub>2</sub>|2|" + newline +
+			"|3|<sup>1</sup>&frasl;<sub>3</sub>|<sup>2</sup>&frasl;<sub>3</sub>|1|<sup>4</sup>&frasl;<sub>3</sub>|" + newline;
+		String actual = Rational.markdownTable(3,4, new Rational.HTMLFormatter());
+		assertEquals(expected,actual);		
+    }
 	
 }

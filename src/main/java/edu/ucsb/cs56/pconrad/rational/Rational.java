@@ -7,6 +7,12 @@ public class Rational {
     private int num;
     private int denom;
 
+	/**
+	   Format Rational for LaTeX.  Example: 
+	   <code>$$\frac{1}{2}$$</code>. 
+	   Note: Implemented as lambda function.
+	 */
+	
 	public static final Rational2String latexFormatter = (r)->{
 		int num = r.getNumerator();
 		int denom = r.getDenominator();
@@ -15,7 +21,13 @@ public class Rational {
 				 denom + "}$$" );
 	};
 
-	public class formatFracHTML implements Rational2String {
+	/**
+	   Format Rational for HTML.  Example: 
+	   <code>&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;10&lt;/sub&gt;&lt;</code>
+	   Note: Implemented as `public static` inner named class.
+	 */
+	
+	public static class HTMLFormatter implements Rational2String {
 		@Override
 		public String r2s(Rational r) {
 			int num = r.getNumerator();
