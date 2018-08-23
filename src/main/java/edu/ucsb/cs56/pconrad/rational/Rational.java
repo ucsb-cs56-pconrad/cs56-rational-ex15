@@ -7,6 +7,28 @@ public class Rational {
     private int num;
     private int denom;
 
+	public static final Rational2String latexFormatter = (r)->{
+		int num = r.getNumerator();
+		int denom = r.getDenominator();
+		return ( (denom==1)? "" + num : "$$\\frac{" +
+				 num + "}{" +
+				 denom + "}$$" );
+	};
+
+	public class formatFracHTML implements Rational2String {
+		@Override
+		public String r2s(Rational r) {
+			int num = r.getNumerator();
+			int denom = r.getDenominator();
+			// Example: <sup>1</sup>&frasl;<sub>10</sub>
+			// See: http://changelog.ca/log/2008/07/01/writing_fractions_in_html
+			
+			return ( (denom==1)? "" + num : "<sup>" +
+					 num + "</sup>&frasl;<sub>" +
+					 denom + "</sub>" );
+		}
+	}
+	
     /** 
 	greatest common divisor of a and b
 	@param a first number
@@ -183,15 +205,7 @@ public class Rational {
      */
 
     public static void main (String [] args) {
-		String actual = Rational.markdownTable(3,4, (r)->{
-				int denom = r.getDenominator();
-				return ( (denom==1)? "" + r.getNumerator() : "\\frac{" +
-						 r.getNumerator() + "}{" +
-						 r.getDenominator() + "}" );
-			});
 
-		System.out.println(actual);
-		
 		Rational r = new Rational(5,7);
 		System.out.println("r.getNumerator()=" + r.getNumerator());
 		System.out.println("r.getDenominator()=" + r.getDenominator());
@@ -270,5 +284,6 @@ public class Rational {
 		}
 		return result;
 	}
-    
+
+	
 }

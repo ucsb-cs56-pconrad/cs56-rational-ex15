@@ -423,21 +423,15 @@ public class RationalTest {
     }
 
 	@Test
-	public void test_markdownTable_3_4_lambda() {
+	public void test_markdownTable_3_4_latexFormatter() {
 		String newline = System.lineSeparator();
 		String expected =
 			"| |1|2|3|4|" + newline +
 			"|-|-|-|-|-|" + newline +
 			"|1|1|2|3|4|" + newline +
-			"|2|\\frac{1}{2}|1|\\frac{3}{2}|2|" + newline +
-			"|3|\\frac{1}{3}|\\frac{2}{3}|1|\\frac{4}{3}|" + newline;
-		String actual = Rational.markdownTable(3,4, (r)->{
-				int denom = r.getDenominator();
-				return ( (denom==1)? "" + r.getNumerator() : "\\frac{" +
-						 r.getNumerator() + "}{" +
-						 r.getDenominator() + "}" );
-			});
-
+			"|2|$$\\frac{1}{2}$$|1|$$\\frac{3}{2}$$|2|" + newline +
+			"|3|$$\\frac{1}{3}$$|$$\\frac{2}{3}$$|1|$$\\frac{4}{3}$$|" + newline;
+		String actual = Rational.markdownTable(3,4, Rational.latexFormatter);
 		assertEquals(expected,actual);		
     }
 
