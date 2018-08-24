@@ -558,5 +558,20 @@ public class RationalTest {
 		String actual = Rational.markdownTable(3,4, new Rational.HTMLFormatter());
 		assertEquals(expected,actual);		
     }
-	
+
+	@Test
+	public void test_compareTo_1_3_lt_2_3() {
+		assertTrue(new Rational(1,3).compareTo(new Rational(2,3)) < 0);
+	}
+
+	@Test
+	public void test_compareTo_2_3_eq_2_3() {
+		assertTrue(new Rational(2,3).compareTo(new Rational(2,3)) == 0);
+	}
+
+	@Test
+	public void test_compareTo_2_3_gt_1_3() {
+		assertTrue(new Rational(2,3).compareTo(new Rational(1,3)) > 0);
+	}
+
 }

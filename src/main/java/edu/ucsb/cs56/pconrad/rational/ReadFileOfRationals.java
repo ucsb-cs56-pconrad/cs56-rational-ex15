@@ -26,53 +26,55 @@ import java.util.ArrayList;
 public class ReadFileOfRationals {
 
     public static final String USAGE =
-	"Usage: \n" +
-	"  java [-cp jar-file] edu.ucsb.cs56.pconrad.rational.ReadFileOfRationals inputFile.txt\n";
+		"Usage: \n" +
+		"  java [-cp jar-file] edu.ucsb.cs56.pconrad.rational.ReadFileOfRationals inputFile.txt\n";
 
     public static void main(String args[]) {
 
-	if (args.length != 1) {
-	    System.err.println("Error: Missing filename parameter");
-	    System.err.println(USAGE);
-	    System.exit(1);
-	}
+		if (args.length != 1) {
+			System.err.println("Error: Missing filename parameter");
+			System.err.println(USAGE);
+			System.exit(1);
+		}
 	
-	String filename = args[0];
+		String filename = args[0];
 
-	ArrayList<Rational> numbers = readArrayListFromFile(filename);
+		ArrayList<Rational> numbers = readArrayListFromFile(filename);
 
-	System.out.println("numbers = " + numbers);
+		System.out.println("numbers (before sorting) = " + numbers);
+		java.util.Collections.sort(numbers);
+		System.out.println("numbers (after sorting) = " + numbers);
     }
 
     public static ArrayList<Rational> readArrayListFromFile(String fileName) {
 
-	ArrayList<Rational> items = new ArrayList<Rational>();
+		ArrayList<Rational> items = new ArrayList<Rational>();
 	
-	// Example of a "try with resources" loop
-	// Short version: objects that implement "java.lang.AutoCloseable"
-	// can be "automatically closed" at the end of a try with resources.
-	// See link at top of program for more info
+		// Example of a "try with resources" loop
+		// Short version: objects that implement "java.lang.AutoCloseable"
+		// can be "automatically closed" at the end of a try with resources.
+		// See link at top of program for more info
 	
-	try (BufferedReader br =
-	     new BufferedReader(new FileReader(fileName))) {
+		try (BufferedReader br =
+			 new BufferedReader(new FileReader(fileName))) {
 
-	    String line;
-	    while ((line = br.readLine()) != null) {
-		// process "line" as input
-		try {
-		    Rational r = new Rational(line);
-		    items.add(r);
-		} catch (IllegalArgumentException iae) {
-		    System.err.println("Warning: ignored bad input line: " +
-				       line);
+			String line;
+			while ((line = br.readLine()) != null) {
+				// process "line" as input
+				try {
+					Rational r = new Rational(line);
+					items.add(r);
+				} catch (IllegalArgumentException iae) {
+					System.err.println("Warning: ignored bad input line: " +
+									   line);
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	    }
-
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
 	
-	return items;
+		return items;
     }
     
 }

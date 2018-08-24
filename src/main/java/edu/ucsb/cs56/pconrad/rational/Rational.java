@@ -1,6 +1,6 @@
 package edu.ucsb.cs56.pconrad.rational;
 
-public class Rational {
+public class Rational implements Comparable<Rational> {
 
     public static final boolean DEBUG=false;
     
@@ -297,5 +297,13 @@ public class Rational {
 		return result;
 	}
 
-	
+	@Override
+	public int compareTo(Rational o) {
+		if (this.equals(o))
+			return 0;
+		if (this.gt(o))
+			return 1;
+		else
+			return -1; 
+	}
 }
